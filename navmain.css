@@ -64,7 +64,7 @@ ul li a:hover + .hidden, .hidden:hover {
     text-decoration: none;
     color: #fff;
     background: #19c589;
-    text-align: center;
+    text-align: left;
     padding: 10px 0;
     display: none;
 }
