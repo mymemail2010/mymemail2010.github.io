@@ -1,271 +1,376 @@
-/* CSS Document */
-
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
-@import url(https://fonts.googleapis.com/css?family=Bree+Serif);
-
-body {
-	
-	font-size:22px;
-	line-height: 32px;
-	color: #ffffff;
-	margin: 0;
-	padding: 0;
-	word-wrap:break-word !important;
-	font-family: 'Open Sans', sans-serif;
-	}
-
-h1 {
-	font-size: 60px;
-	text-align: center;
-	color: #FFF;
-}	
-
-h3 {
-	font-size: 30px;
-	line-height: 34px;
-	text-align: center;
-	color: #FFF;
-}
-
-h3 a {
-	color: #FFF;
-}
-
-a {
-	color: #FFF;
-}
-
-h1 {
-	margin-top: 100px;
-	text-align:center;
-	font-size:60px;
-	line-height: 70px;
-	font-family: 'Bree Serif', 'serif';
-	}
-
-#container {
-	margin: 0 auto;
-	max-width: 890px;
-}
-
-p {
-	text-align: center;
-}
-
-.toggle,
-[id^=drop] {
-	display: none;
-}
-
-/* Giving a background-color to the nav container. */
-nav { 
-	margin:0;
-	padding: 0;
-	background-color: #254441;
-}
-
-#logo {
-	display: block;
-	padding: 0 30px;
-	float: left;
-	font-size:20px;
-	line-height: 60px;
-}
-
-/* Since we'll have the "ul li" "float:left"
- * we need to add a clear after the container. */
-
-nav:after {
-	content:"";
-	display:table;
-	clear:both;
-}
-
-/* Removing padding, margin and "list-style" from the "ul",
- * and adding "position:reltive" */
-nav ul {
-	float: right;
-	padding:0;
-	margin:0;
-	list-style: none;
-	position: relative;
-	}
-	
-/* Positioning the navigation items inline */
-nav ul li {
-	margin: 0px;
-	display:inline-block;
-	float: left;
-	background-color: #254441;
-	}
-
-/* Styling the links */
-nav a {
-	display:block;
-	padding:14px 20px;	
-	color:#FFF;
-	font-size:17px;
-	text-decoration:none;
-}
-
-
-nav ul li ul li:hover { background: #e87070; }
-
-/* Background color change on Hover */
-nav a:hover { 
-	background-color: #e87070; 
-}
-
-/* Hide Dropdowns by Default
- * and giving it a position of absolute */
-nav ul ul {
-	display: none;
-	position: absolute; 
-	/* has to be the same number as the "line-height" of "nav a" */
-	top: 60px; 
-}
-	
-/* Display Dropdowns on Hover */
-nav ul li:hover > ul {
-	display:inherit;
-}
-	
-/* Fisrt Tier Dropdown */
-nav ul ul li {
-	width:170px;
-	float:none;
-	display:list-item;
-	position: relative;
-}
-
-/* Second, Third and more Tiers	
- * We move the 2nd and 3rd etc tier dropdowns to the left
- * by the amount of the width of the first tier.
-*/
-nav ul ul ul li {
-	position: relative;
-	top:-60px;
-	/* has to be the same number as the "width" of "nav ul ul li" */ 
-	left:170px; 
-}
-
-	
-/* Change ' +' in order to change the Dropdown symbol */
-li > a:after { content:  ' +'; }
-li > a:only-child:after { content: ''; }
-
-
-/* Media Queries
---------------------------------------------- */
-
-@media all and (max-width : 768px) {
-
-	#logo {
-		display: block;
-		padding: 0;
-		width: 100%;
-		text-align: center;
-		float: none;
-	}
-
-	nav {
-		margin: 0;
-	}
-
-	/* Hide the navigation menu by default */
-	/* Also hide the  */
-	.toggle + a,
-	.menu {
-		display: none;
-	}
-
-	/* Stylinf the toggle lable */
-	.toggle {
-		display: block;
-		background-color: #254441;
-		padding:14px 20px;	
-		color:#FFF;
-		font-size:17px;
-		text-decoration:none;
-		border:none;
-	}
-
-	.toggle:hover {
-		background-color: #000000;
-	}
-
-	/* Display Dropdown when clicked on Parent Lable */
-	[id^=drop]:checked + ul {
-		display: block;
-	}
-
-	/* Change menu item's width to 100% */
-	nav ul li {
-		display: block;
-		width: 100%;
-		}
-
-	nav ul ul .toggle,
-	nav ul ul a {
-		padding: 0 40px;
-	}
-
-	nav ul ul ul a {
-		padding: 0 80px;
-	}
-
-	nav a:hover,
- 	nav ul ul ul a {
-		background-color: #000000;
-	}
+body{
+  display:flex;
+  justify-content:center;
+  height:100vh;
+  padding:0px;
+  margin:0px;
+  overflow:hidden;
+  font-family:'Nanum Gothic', sans-serif;
+  perspective:700px;
+  background:#333;
+  *{
+    box-sizing:border-box;
+    transform-style:preserve-3d;
+  }
+  @media (min-width:666px){
+  nav{
+    width:100%;
+    position:absolute;
+    background:#222;
+    margin:0px;
+    max-width:100%;
+    z-index:2;
+    ol{
+      width:100%;
+      display:flex;
+      justify-content:space-around;
+      padding:0px;
+      margin:0px;
+      transition:all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      li{
+        display:inline-block;
+        padding:30px;
+        flex-grow:1;
+        text-align:center;
+        position:relative;
+        transition:all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        &:nth-of-type(4){
+              ol{
+                &:after{
+                  content:"\f06d";
+                  font-family:FontAwesome;
+                }
+              }
+            }
+        &:hover{
+          ol{
+            
+          &:before{
+                  content:'';
+                  position:absolute;
+                  width:20px;
+                  height:20px;
+                  display:block;
+                  bottom:-30px;
+                  left:-15px;
+                  transform:rotate(45deg) scale(0.5);
+                  border:3px solid orange;
+                  border-color:orange transparent transparent orange;
+                  background:linear-gradient(45deg, transparent -50%, transparent 45%, orange 45%, orange 55%, transparent 55%, transparent 125%);
+                  background-repeat:no-repeat;
+                  
+                  animation:clipin 0.4s ease-in 1 forwards;
+                  animation-delay:0.2s;
+                  -webkit-clip-path: polygon(35% 35%, 35% 0, 35% 0, 35% 35%, 0 35%, 0 35%);
+                  clip-path: polygon(35% 35%, 35% 0, 35% 0, 35% 35%, 0 35%, 0 35%);
+          }
+          }
+          li{
+            position:relative;
+            &:first-of-type{
+              &:before{
+                display:none;
+              }
+            }
+                &:before{
+                  content:'';
+                  position:absolute;
+                  width:20px;
+                  height:20px;
+                  display:block;
+                  right:-30px;
+                  top:-15px;
+                  left:auto;
+                  transform:rotate(-45deg) scale(0.5);
+                  border:3px solid red;
+                  border-color:red transparent transparent red;
+                  background:linear-gradient(45deg, transparent -50%, transparent 45%, red 45%, red 55%, transparent 55%, transparent 125%);
+                  background-repeat:no-repeat;
+                  
+                  animation:clipin 0.4s ease-in 1 forwards;
+                  -webkit-clip-path: polygon(35% 35%, 35% 0, 35% 0, 35% 35%, 0 35%, 0 35%);
+clip-path: polygon(35% 35%, 35% 0, 35% 0, 35% 35%, 0 35%, 0 35%);
+                  @keyframes clipin{
+                    0%{
+                      -webkit-clip-path: polygon(35% 35%, 35% 0, 35% 0, 35% 35%, 0 35%, 0 35%);
+clip-path: polygon(35% 35%, 35% 0, 35% 0, 35% 35%, 0 35%, 0 35%);
+                    }
+                    50%{
+                      -webkit-clip-path: polygon(35% 35%, 35% 0, 35% 0, 35% 35%, 0 35%, 0 35%);
+clip-path: polygon(35% 35%, 35% 0, 35% 0, 35% 35%, 0 35%, 0 35%);
+                    }
+                    75%{
+                      -webkit-clip-path: polygon(35% 35%, 35% 0, 100% 0, 100% 100%, 0 100%, 0 35%);
+clip-path: polygon(35% 35%, 35% 0, 100% 0, 100% 100%, 0 100%, 0 35%);
+                    }
+                    100%{
+                      -webkit-clip-path: polygon(100% 100%, 100% 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+clip-path: polygon(100% 100%, 100% 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+                    }
+                  }
+                }
+          }
+        }
+        ol{
+          &:after{
+            content:"\f25b";
+            font-family:FontAwesome;
+            vertical-align:center;
+            font-size:150px;
+            color:#ff8000;
+            position:absolute;
+            padding-top:40px;
+            height:calc(100% - 40px);
+            width:100%;
+            left:-100%;
+            top:0;
+            background:orange;
+            transform:rotate(-90deg);
+            transform-origin:0% 0%;
+            transition:all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          }
+        }
+        @for $i from 1 through 10{
+          &:nth-of-type(#{$i}){
+            &:hover{
+              a{
+                color:#222;
+              }
+              ol{
+                li{
+                  a{
+                    color:#fff;
+                  }
+                }
+              }
+              &:before{
+                transform:translateY(0) rotate(0deg);
+              }
+            }
+            &:before{
+              content:'';
+              position:absolute;
+              width:100%;
+              height:100%;
+              background:adjust-hue(red, ($i * 10));
+              top:0;
+              left:0;
+              z-index:-1;
+              transition:all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+              transform:translateY(-125%) rotate(-5deg);
+            }
+          }
+        }
+        &:hover{
+          ol{
+            transform:translateY(0) translateZ(-1px);
+            &:after{
+              transform:rotate(0deg);
+            }
+            li{
+              &:nth-of-type(1n){
+                transform:none;
+                margin:0px;
+                &:hover{
+                  &:after{
+                    opacity:1;
+                    top:0vh;
+                  }
+                }
+              }
+            }
+          }
+        }
+        a{
+          color:#fff;
+          text-decoration:none;
+          text-transform:uppercase;
+          letter-spacing:2px;
+          font-weight:900;
+        }
+        ol{
+          display:block;
+          position:absolute;
+          top:100%;
+          transform:translateY(-110%) translateZ(-5px);
+          transform-origin:top right;
+          z-index:-1;
+          width:120%;
+          left:0;
+          &:hover{
+            li{
+              &:nth-of-type(1n){
+                &:hover{
+                  padding:40px 30px;
+                }
+              }
+            }
+          }
+          li{
+            display:block;
+            margin:20px 0;
+            a{
+              font-size:14px;
+            }
+            &:before{
+              display:none;
+            }
+            @for $i from 1 through 10{
+              &:nth-of-type(#{$i}){
+                transition-delay:#{$i/10}s;       background:adjust-hue(red, ($i * 10));
+                &:before{
+                  animation-delay:#{$i/20}s;
+                  background:linear-gradient(45deg, transparent -50%, transparent 45%, adjust-hue(red, ($i * 10)) 45%, adjust-hue(red, ($i * 10)) 55%, transparent 55%, transparent 125%);
+                  background-repeat:no-repeat;
+                  border-color:adjust-hue(red, ($i * 10)) transparent transparent adjust-hue(red, ($i * 10));
+                }
+                
+              }
+            }
+            &:first-of-type{
+              margin-top:0;
+            }
+            &:nth-of-type(even){
+              transform-origin:top left;
+              transform:rotate(5deg);
+            }
+            &:nth-of-type(odd){
+              transform-origin:top right;
+              transform:rotate(-5deg);
+            }
+          }
+        }
+      }
+    }
+  }
+  }
+  @media (max-width:666px){
+    nav{
+      position:absolute;
+      top:0;
+      height:45px;
+      left:0;
+      background:#222;
+      width:100%;
+      &:hover{
+        ol{
+          li{
+            &:nth-of-type(1n){
+              transform:rotate(0deg);
+              margin:0px;
+              transition:all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+            @for $i from 1 through 10{
+              &:nth-of-type(#{$i}){
+                transition-delay:#{$i/15}s;
+                &:hover{
+                  a{
+                    color:adjust-hue(red, ($i * 10));
+                  }
+                }
+              }
+            }
+          }
+        }
+        &:before{
+          transform:rotate(45deg);
+          box-shadow:0 0 0 0;
+        }
+        &:after{
+          transform:rotate(-45deg);
+        }
+      }
+      &:before, &:after{
+        content:'';
+        position:absolute;
+        width:30px;
+        height:3px;
+        background:#fff;
+        top:10px;
+        left:calc(50% - 15px);
+        border-radius:5px;
+        box-shadow:0 10px 0 0 #fff;
+        transition:transform 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 100ms ease-in-out;
+        transition-delay:0.1s, 0s;
+        transform-origin:0% 50%;
+      }
+      &:after{
+        box-shadow:none;
+        top:30px;
+        transform-origin:0% 50%;
+      }
+      &:hover{
+        ol{
+          transform:translateY(0) translateZ(-1px);
+          ol{
+            transform:none;
+          }
+        }
+      }
+      ol{
+        position:absolute;
+        width:100%;
+        top:0px;
+        display:table;
+        left:0;
+        margin:0px;
+        transform:translateY(calc(-100% - 45px)) translateZ(-1px);
+        text-align:center;
+        transition:all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        background:#000;
+        padding:60px 0 20px;
+        height:auto;
+        li{
+          position:relative;
+          display:inline-block;
+          width:100%;
+          clear:both;
+          height:50px;
+          padding:10px 0;
+          margin:10px 0;
+          transition:all 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          background:#000;
+          &:nth-of-type(even){
+            transform:rotate(-5deg);
+          }
+          &:nth-of-type(odd){
+            transform:rotate(5deg);
+          }
+          &:hover{
+            ol{
+              height:auto;
+              transition:opacity 0.2s ease-in-out;
+              opacity:1;
+            }
+          }
+          a{
+            color:#fff;
+            text-decoration:none;
+          }
+        }
+        ol{
+          position:relative;
+          transform:none;
+          background:transparent;
+          display:inline-block;
+          width:100%;
+          height:auto;
+          top:auto;
+          padding:0;
+          height:0;
+          overflow:hidden;
+          opacity:0;
+          transition:opacity 0.2s ease-in-out;
+          li{
+            font-size:12px;
+            height:auto;
+            &:first-of-type{
+              padding-top:20px;
+            }
+          }
+        }
+      }
+    }
+  }
   
-	nav ul li ul li .toggle,
-	nav ul ul a,
-  nav ul ul ul a{
-		padding:14px 20px;	
-		color:#FFF;
-		font-size:17px; 
-	}
-  
-  
-	nav ul li ul li .toggle,
-	nav ul ul a {
-		background-color: #212121; 
-	}
-
-	/* Hide Dropdowns by Default */
-	nav ul ul {
-		float: none;
-		position:static;
-		color: #ffffff;
-		/* has to be the same number as the "line-height" of "nav a" */
-	}
-		
-	/* Hide menus on hover */
-	nav ul ul li:hover > ul,
-	nav ul li:hover > ul {
-		display: none;
-	}
-		
-	/* Fisrt Tier Dropdown */
-	nav ul ul li {
-		display: block;
-		width: 100%;
-	}
-
-	nav ul ul ul li {
-		position: static;
-		/* has to be the same number as the "width" of "nav ul ul li" */ 
-
-	}
-
-}
-
-@media all and (max-width : 330px) {
-
-	nav ul li {
-		display:block;
-		width: 94%;
-	}
-
 }
